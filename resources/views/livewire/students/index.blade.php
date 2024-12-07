@@ -13,11 +13,15 @@
                     </a>
                 </div>
             </div>
-
-            <div class="overflow-hidden bg-white shadow-xl rounded-xl mt-8">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <div class="overflow-x-auto rounded-lg bg-gradient-to-tl from-indigo-100 via-purple-50 to-pink-50 shadow-lg">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
+           {{-- Search students --}}
+            <div>
+                <x-search placeholder="Search students.." wire:model.live.debounce.500="search" />
+            </div>
+            {{-- end search --}}
+            <div class="overflow-hidden bg-white shadow-xl rounded-xl mt-8 dark:bg-neutral-800">
+    <div class="p-6 text-gray-900 dark:text-gray-100">
+        <div class="overflow-x-auto rounded-lg bg-gradient-to-tl from-indigo-100 via-purple-50 to-pink-50 dark:from-neutral-800 dark:via-neutral-700 dark:to-neutral-600 shadow-lg">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700">
                             <thead>
                             <tr>
     <th scope="col" class="px-6 py-3 text-xs font-medium text-gray-600 uppercase text-start dark:text-neutral-500">ID</th>
@@ -40,7 +44,7 @@
                 <div class="flex justify-end items-center gap-x-3">
                     <a href="{{ route('students.edit', $student->id) }}" wire:navigate class="text-sm font-semibold text-blue-600 border border-transparent rounded-lg gap-x-2 hover:text-blue-800 focus:outline-none focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400">Edit</a>
                     <button type="button" wire:click="delete({{ $student->id }})"
-                                                wire:confirm="Are you sure you want to delete this student?"  class="text-sm font-semibold text-red-600 border border-transparent rounded-lg gap-x-2 hover:text-red-800 focus:outline-none focus:text-red-800 disabled:opacity-50 disabled:pointer-events-none dark:text-red-500 dark:hover:text-red-400 dark:focus:text-red-400">Delete</button>
+                                                wire:confirm="Are you sure you want this student to be excommunicado?"  class="text-sm font-semibold text-red-600 border border-transparent rounded-lg gap-x-2 hover:text-red-800 focus:outline-none focus:text-red-800 disabled:opacity-50 disabled:pointer-events-none dark:text-red-500 dark:hover:text-red-400 dark:focus:text-red-400">Delete</button>
                 </div>
             </td>
         </tr>
@@ -55,5 +59,8 @@
                 </div>
             </div>
         </div>
+         {{-- Spinner --}}
+         <x-spinner wire:loading />
+            {{-- End Spinner --}}
     </div>
 </div>
